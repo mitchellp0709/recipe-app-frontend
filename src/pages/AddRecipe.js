@@ -2,8 +2,12 @@ import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { ADD_RECIPE } from "../graphql/Mutations";
 import { GET_RECIPES } from "../graphql/Queries";
+import { useNavigate } from "react-router-dom";
 
 const AddRecipe = (props) => {
+  const navigate = useNavigate()
+
+
   const [recipe, setRecipe] = useState({
     name: "",
     description: "",
@@ -11,21 +15,24 @@ const AddRecipe = (props) => {
     image: "",
     ingredients: [],
     quantities: [],
-  })
+  }
+  )
 
   const [addRecipe] = useMutation(ADD_RECIPE)
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     await addRecipe({
-      name: recipe.name,
-      description: recipe.description,
-      instructions: recipe.instructions,
-      image: recipe.image,
-      ingredients: recipe.ingredients,
-      quantities: recipe.quantities,
+      variables: {
+        name: recipe.name,
+        description: recipe.description,
+        instructions: recipe.instructions,
+        image: recipe.image,
+        ingredients: recipe.ingredients,
+        quantities: recipe.quantities,
+      }, refetchQueries:[{query:GET_RECIPES}]
     })
-    // refetchQueries: [{ query: GET_RECIPES }]
+    navigate("/")
   }
 
   const handleChange = (event) => {
@@ -35,6 +42,7 @@ const AddRecipe = (props) => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <pre>{JSON.stringify(recipe, null, `\t`)}</pre>
       <input
         type="text"
         name="name"
@@ -77,7 +85,21 @@ const AddRecipe = (props) => {
         placeholder="quantities"
         onChange={handleChange}
       />
-      <input type="submit" value="Create New Recipe"/>
+      {/* <input
+        type="text"
+        name="ingredients"
+        value={recipe.ingredients}
+        placeholder="ingredients"
+        onChange={handleChange}
+      />
+      <input
+        type="text"
+        name="quantities"
+        value={recipe.quantities}
+        placeholder="quantities"
+        onChange={handleChange}
+      /> */}
+      <input type="submit" value="Create New Recipe" />
     </form>
   );
 
