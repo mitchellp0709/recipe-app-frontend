@@ -13,8 +13,7 @@ const AddRecipe = (props) => {
     description: "",
     instructions: "",
     image: "",
-    ingredients: [],
-    quantities: [],
+    ingredients: "",
   }
   )
 
@@ -22,14 +21,34 @@ const AddRecipe = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const ingred = {
+      ingredients: [],
+      quantities:[]
+    }
+    
+    const items = recipe.ingredients.split(",")
+
+    items.forEach((i) => {
+      const spl = i.split(" ")
+      console.log(spl)
+      if (spl[0] == "") {
+        ingred.quantities.push(spl[1]);
+        ingred.ingredients.push(spl[2]);
+      } else {
+        ingred.quantities.push(spl[0])
+        ingred.ingredients.push(spl[1])
+      }
+      console.log(ingred)
+    })
+    
     await addRecipe({
       variables: {
         name: recipe.name,
         description: recipe.description,
         instructions: recipe.instructions,
         image: recipe.image,
-        ingredients: recipe.ingredients,
-        quantities: recipe.quantities,
+        ingredients: ingred.ingredients,
+        quantities: ingred.quantities,
       }, refetchQueries:[{query:GET_RECIPES}]
     })
     navigate("/")
@@ -39,10 +58,11 @@ const AddRecipe = (props) => {
     setRecipe({ ...recipe, [event.target.name]: event.target.value });
   };
 
+  
+
 
   return (
     <form onSubmit={handleSubmit}>
-      <pre>{JSON.stringify(recipe, null, `\t`)}</pre>
       <input
         type="text"
         name="name"
@@ -71,34 +91,15 @@ const AddRecipe = (props) => {
         placeholder="image"
         onChange={handleChange}
       />
+      
       <input
         type="text"
         name="ingredients"
         value={recipe.ingredients}
-        placeholder="ingredients"
+        placeholder="2cup flour, 2l water"
         onChange={handleChange}
       />
-      <input
-        type="text"
-        name="quantities"
-        value={recipe.quantities}
-        placeholder="quantities"
-        onChange={handleChange}
-      />
-      {/* <input
-        type="text"
-        name="ingredients"
-        value={recipe.ingredients}
-        placeholder="ingredients"
-        onChange={handleChange}
-      />
-      <input
-        type="text"
-        name="quantities"
-        value={recipe.quantities}
-        placeholder="quantities"
-        onChange={handleChange}
-      /> */}
+      
       <input type="submit" value="Create New Recipe" />
     </form>
   );
