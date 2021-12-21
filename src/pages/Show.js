@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client"
 import { GET_RECIPE } from "../graphql/Queries"
 import { useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 
 const Show = ({getQuery}) => {
   const params = useParams();
@@ -17,28 +17,30 @@ const Show = ({getQuery}) => {
   if (loading) return <h1>loading...</h1>;
   if (error) return <p>error.message</p>;
 
-
-  return (
-    <div>
-      <h1>{recipe.name}</h1>
-      <img src={recipe.image} alt="pic of food" />
-      <h2>{recipe.description}</h2>
-      {console.log(recipe.quantities)}
-      <div className="doubleList">
-        <ul>
-          {recipe.quantities.map((x) => {
-            return <li>{x}</li>;
-          })}
-        </ul>
-        <ul>
-          {recipe.ingredients.map((x) => {
-            return <li>{x}</li>;
-          })}
-        </ul>
+  if (recipe) {
+    return (
+      <div>
+        {console.log(recipe)}
+        <h1>{recipe.name}</h1>
+        <img src={recipe.image} alt="pic of food" />
+        <h2>{recipe.description}</h2>
+        {/* <div className="doubleList">
+          <ul>
+            {recipe.quantities.map((x) => {
+              return <li>{x}</li>;
+            })}
+          </ul>
+          <ul>
+            {recipe.ingredients.map((x) => {
+              return <li>{x}</li>;
+            })}
+          </ul>
+        </div> */}
+        <p>{recipe.instructions}</p>
+        <Link to ={`/${id}/edit`}><button>Edit</button></Link>
       </div>
-      <p>{recipe.instructions}</p>
-    </div>
-  );
+    );
+  }
 }
   
 

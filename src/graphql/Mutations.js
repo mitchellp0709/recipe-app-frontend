@@ -24,19 +24,21 @@ mutation addRecipe(
 
 export const UPDATE_RECIPE = gql`
   mutation updateRecipe(
-    $name: String!
-    $description: String
-    $instructions: String
-    $image: String
-    $ingredients: [String]
+    $id: ID,
+    $name: String!,
+    $description: String,
+    $instructions: String,
+    $image: String,
+    $ingredients: [String],
     $quantities: [String]
   ) {
     updateRecipe(
-      name: $name
-      description: $description
-      instructions: $instructions
-      image: $image
-      ingredients: $ingredients
+      id:$id,
+      name: $name,
+      description: $description,
+      instructions: $instructions,
+      image: $image,
+      ingredients: $ingredients,
       quantities: $quantities
     ) {
       id
@@ -50,3 +52,9 @@ export const UPDATE_RECIPE = gql`
   }
 `;
 
+export const DELETE_RECIPE = gql`
+  mutation deleteRecipe($id:ID){
+    deleteRecipe(id:$id)
+  }
+
+`
