@@ -40,39 +40,40 @@ const Show = ({ getQuery }) => {
 
   if (recipe) {
     return (
-      <div>
-        {console.log(recipe)}
-        <h1>{recipe.name}</h1>
-        <img src={recipe.image} alt="pic of food" />
-        <h2>{recipe.description}</h2>
+      <div className="bs">
+        <div className="show-container">
+          <h1 className="recipe-name">{recipe.name}</h1>
+          <img src={recipe.image} alt="pic of food" className="show-image" />
+          <h2>{recipe.description}</h2>
 
-        {recipe.quantities ? (
-          <div className="doubleList">
-            <ul>
-              {recipe.quantities.map((x) => {
-                return <li>{x}</li>;
-              })}
-            </ul>
-            <ul>
-              {recipe.ingredients.map((x) => {
-                return <li>{x}</li>;
-              })}
-            </ul>
-          </div>
-        )  : (
-          <h1>Loading...</h1>
-        )}
-        
-        <p>{recipe.instructions}</p>
-        <Link to={`/${id}/edit`}>
-          <button>Edit</button>
-        </Link>
-        <button
-          onClick={() => {
-            removeRecipe(id);
-          }}>
-          Delete
-        </button>
+          {recipe.quantities ? (
+            <div className="doubleList">
+              <ul className="quantities">
+                {recipe.quantities.map((x) => {
+                  return <li>{x}</li>;
+                })}
+              </ul>
+              <ul className="ingredients">
+                {recipe.ingredients.map((x) => {
+                  return <li>{x}</li>;
+                })}
+              </ul>
+            </div>
+          ) : (
+            <h1>Loading...</h1>
+          )}
+
+          <p>{recipe.instructions}</p>
+          <Link to={`/${id}/edit`}>
+            <button>Edit</button>
+          </Link>
+          <button
+            onClick={() => {
+              removeRecipe(id);
+            }}>
+            Delete
+          </button>
+        </div>
       </div>
     );
   }

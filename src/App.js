@@ -34,7 +34,7 @@ function App() {
         <Route path="/" element={<Main allRecipes={allRecipes}/>}/>
         <Route path="/new" element={<AddRecipe />} />
         <Route path="/:id" element={<Show />} />
-        <Route path="/:id/edit" element={<Edit allRecipes={allRecipes}/>}/>
+        <Route path="/:id/edit" element={<Edit allRecipes={allRecipes?.data?.getRecipes}/>}/>
         </Routes>
       
     </div>

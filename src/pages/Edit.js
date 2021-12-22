@@ -9,12 +9,40 @@ const Edit = (props) => {
   const params = useParams()
   const navigate = useNavigate()
   const id = params.id;
-  const { loading, data, error } = props.allRecipes
+  
   const [recipe, setRecipe] = useState({})
   
-  const targetRecipe = data?.getRecipes.find((element) => element.id === id);
+  const targetRecipe = props.allRecipes?.find((element) => element.id === id);
   
-  useEffect(() => {setRecipe(targetRecipe) },[])
+  
+  const target2 = { ...targetRecipe };
+  if (targetRecipe) {
+    let ing2 = ""
+    
+    for (let i = 0; i < targetRecipe.ingredients.length; i++) {
+      
+      if (i === 0) {
+        ing2 += `${targetRecipe.quantities[i]} ${targetRecipe.ingredients[i]}`;
+      } else {
+        ing2 += `,${targetRecipe.quantities[i]} ${targetRecipe.ingredients[i]}`;
+      }
+      console.log(ing2)
+    }
+    target2.ingredients = ing2;
+    
+  }
+  
+  
+
+
+
+  useEffect(() => {
+    
+    
+    setRecipe(target2)
+  }, [props.allRecipes])
+  
+
   
 
   // if (loading) { return <h1>loading...</h1> }
@@ -31,10 +59,11 @@ const Edit = (props) => {
     console.log(recipe.ingredients)
 
     const items = recipe.ingredients.split(",")
+    
 
     items.forEach((i) => {
       const spl = i.split(" ");
-      console.log(spl);
+      // console.log(spl);
       if (spl[0] == "") {
         ingred.quantities.push(spl[1]);
         ingred.ingredients.push(spl[2]);
@@ -42,7 +71,7 @@ const Edit = (props) => {
         ingred.quantities.push(spl[0]);
         ingred.ingredients.push(spl[1]);
       }
-      console.log(ingred);
+      // console.log(ingred);
     });
 
     await updateRecipe({
@@ -63,9 +92,57 @@ const Edit = (props) => {
   const handleChange = (event) => {
     setRecipe({ ...recipe, [event.target.name]: event.target.value });
   };
+  
+  if (props.allRecipes) {
+    return (
+      <form onSubmit={handleSubmit}>
+        {/* {console.log(recipe)} */}
+        <input
+          type="text"
+          name="name"
+          value={recipe.name}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="description"
+          value={recipe.description}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="instructions"
+          value={recipe.instructions}
+          placeholder="instructions"
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="image"
+          value={recipe.image}
+          placeholder="image"
+          onChange={handleChange}
+        />
+
+        <input
+          type="text"
+          name="ingredients"
+          value={recipe.ingredients}
+          placeholder="2cup flour, 2l water"
+          onChange={handleChange}
+        />
+
+        <input type="submit" value="Edit Recipe" />
+      </form>
+    );
+  } else {
+    return <h1>Loading...</h1>;
+  }
+  
+  
   return (
     <form onSubmit={handleSubmit}>
-      {console.log(recipe)}
+      {/* {console.log(recipe)} */}
       <input
         type="text"
         name="name"

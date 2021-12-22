@@ -11,19 +11,18 @@ const Main = (props) => {
 
 
 
-  return <div>
-    <div>
+  return <div className="all">
+    <div className="main-container">
         {data?.getRecipes.map((recipe) => {
           return (
             <div key={recipe.id}>
               <Link to={`/${recipe.id}`}>
                 <h1>{recipe.name}</h1>
               </Link>
-              <img src={recipe.image} />
-              <h2>{recipe.description}</h2>
-              <p>{recipe.quantities}</p>
-              <p>{recipe.ingredients}</p>
-              <p>{recipe.instructions}</p>
+              <Link to={`/${recipe.id}`}>
+                <img src={recipe.image} />
+              </Link>
+              <h2>{ recipe.description}</h2>
             </div>
           );
         })}
