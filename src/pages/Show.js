@@ -64,15 +64,17 @@ const Show = ({ getQuery }) => {
           )}
 
           <p>{recipe.instructions}</p>
-          <Link to={`/${id}/edit`}>
-            <button>Edit</button>
-          </Link>
-          <button
-            onClick={() => {
-              removeRecipe(id);
-            }}>
-            Delete
-          </button>
+          <div className="bs">
+            <Link to={`/${id}/edit`}>
+              <button>Edit</button>
+            </Link>
+            <button
+              onClick={() => {
+                removeRecipe(id);
+              }}>
+              Delete
+            </button>
+          </div>
         </div>
       </div>
     );

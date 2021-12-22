@@ -95,6 +95,7 @@ const Edit = (props) => {
   
   if (props.allRecipes) {
     return (
+      <div className="bs">
       <form onSubmit={handleSubmit}>
         {/* {console.log(recipe)} */}
         <input
@@ -133,7 +134,8 @@ const Edit = (props) => {
         />
 
         <input type="submit" value="Edit Recipe" />
-      </form>
+        </form>
+        </div>
     );
   } else {
     return <h1>Loading...</h1>;

@@ -15,7 +15,7 @@ const Main = (props) => {
     <div className="main-container">
         {data?.getRecipes.map((recipe) => {
           return (
-            <div key={recipe.id}>
+            <div key={recipe.id} className="recipe">
               <Link to={`/${recipe.id}`}>
                 <h1>{recipe.name}</h1>
               </Link>

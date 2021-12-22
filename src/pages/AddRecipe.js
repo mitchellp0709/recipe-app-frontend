@@ -61,7 +61,7 @@ const AddRecipe = (props) => {
   
 
 
-  return (
+  return (<div className="bs">
     <form onSubmit={handleSubmit}>
       <input
         type="text"
@@ -74,21 +74,21 @@ const AddRecipe = (props) => {
         type="text"
         name="description"
         value={recipe.description}
-        placeholder="description"
+        placeholder="Life story and/or description"
         onChange={handleChange}
       />
       <input
         type="text"
         name="instructions"
         value={recipe.instructions}
-        placeholder="instructions"
+        placeholder="Instructions"
         onChange={handleChange}
       />
       <input
         type="text"
         name="image"
         value={recipe.image}
-        placeholder="image"
+        placeholder="Image Link"
         onChange={handleChange}
       />
       
@@ -102,6 +102,7 @@ const AddRecipe = (props) => {
       
       <input type="submit" value="Create New Recipe" />
     </form>
+    </div>
   );
 
 }
