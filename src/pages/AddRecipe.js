@@ -77,15 +77,16 @@ const AddRecipe = (props) => {
         placeholder="Life story and/or description"
         onChange={handleChange}
       />
-      <input
+      <textarea
         type="text"
         name="instructions"
         value={recipe.instructions}
         placeholder="Instructions"
         onChange={handleChange}
+        className="instructions"
       />
       <input
-        type="text"
+        type="text-area"
         name="image"
         value={recipe.image}
         placeholder="Image Link"

@@ -110,7 +110,7 @@ const Edit = (props) => {
           value={recipe.description}
           onChange={handleChange}
         />
-        <input
+        <textarea
           type="text"
           name="instructions"
           value={recipe.instructions}

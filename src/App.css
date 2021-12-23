@@ -97,7 +97,7 @@ form{
   align-items: center;
 }
 
-input{
+input,textarea{
   width: 100%;
   margin: 10px;
   height:40px;
