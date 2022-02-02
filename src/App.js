@@ -8,6 +8,7 @@ import Main from './pages/Main';
 import Show from './pages/Show';
 import Header from './components/Header';
 import Edit from './pages/Edit';
+import Random from './pages/Random';
 
 function App() {
   //////////////////////
@@ -23,18 +24,22 @@ function App() {
   //   })
   // };
 
+  const url = "https://api.spoonacular.com/recipes/";
+  const apiKey = "58b7f91d4b5e4caa8919e0f7bd122b71";
+
 
 
  
 
   return (
     <div className="App">
-      <Header />
+      <Header url={url} apiKey={apiKey}/>
       <Routes>
         <Route path="/" element={<Main allRecipes={allRecipes}/>}/>
         <Route path="/new" element={<AddRecipe />} />
         <Route path="/:id" element={<Show />} />
-        <Route path="/:id/edit" element={<Edit allRecipes={allRecipes?.data?.getRecipes}/>}/>
+        <Route path="/:id/edit" element={<Edit allRecipes={allRecipes?.data?.getRecipes} />} />
+        <Route path="/random" element ={<Random url={url} apiKey={apiKey}/>}/>
         </Routes>
       
     </div>
