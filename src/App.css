@@ -110,3 +110,17 @@ input[type=submit]{
 input[type=submit]:hover{
   cursor: pointer;
 }
+
+
+
+/* RANDOM PAGE */
+
+
+ul{
+  list-style: none;
+}
+
+.random-instructions{
+  width:80%;
+  text-align: center;
+}

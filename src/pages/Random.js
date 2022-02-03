@@ -12,9 +12,10 @@ const Random = (props) => {
   useEffect(() => getRandomRecipe(),[])
 
   if (randomRecipe) {
-    return <div>
+    return <div className="random-container">
       <h1>{randomRecipe.recipes[0].title}</h1>
       <img src={randomRecipe.recipes[0].image} alt={randomRecipe.recipes[0].title} />
+      <p>{randomRecipe.recipes[0].summary}</p>
       <h2>Ingredients: </h2>
       <ul>
         {randomRecipe.recipes[0].extendedIngredients.map((ing) => {
@@ -22,7 +23,7 @@ const Random = (props) => {
         })}
       </ul>
       <h2>Instructions: </h2>
-      <p>{randomRecipe.recipes[0].instructions}</p>
+      <p className="random-instructions">{randomRecipe.recipes[0].instructions}</p>
     </div>
   } else{return <h1>Loading...</h1>}
 }
