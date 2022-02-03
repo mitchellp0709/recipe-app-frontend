@@ -16,21 +16,21 @@ const Edit = (props) => {
   
   
   const target2 = { ...targetRecipe };
-  if (targetRecipe) {
-    let ing2 = ""
+  // if (targetRecipe) {
+  //   let ing2 = ""
     
-    for (let i = 0; i < targetRecipe.ingredients.length; i++) {
+  //   for (let i = 0; i < targetRecipe.ingredients.length; i++) {
       
-      if (i === 0) {
-        ing2 += `${targetRecipe.quantities[i]} ${targetRecipe.ingredients[i]}`;
-      } else {
-        ing2 += `,${targetRecipe.quantities[i]} ${targetRecipe.ingredients[i]}`;
-      }
-      console.log(ing2)
-    }
-    target2.ingredients = ing2;
+  //     if (i === 0) {
+  //       ing2 += `${targetRecipe.quantities[i]} ${targetRecipe.ingredients[i]}`;
+  //     } else {
+  //       ing2 += `,${targetRecipe.quantities[i]} ${targetRecipe.ingredients[i]}`;
+  //     }
+  //     console.log(ing2)
+  //   }
+  //   target2.ingredients = ing2;
     
-  }
+  // }
   
   
 
@@ -40,7 +40,7 @@ const Edit = (props) => {
     
     
     setRecipe(target2)
-  }, [props.allRecipes])
+  }, [props.allRecipes,targetRecipe])
   
 
   
@@ -61,18 +61,18 @@ const Edit = (props) => {
     const items = recipe.ingredients.split(",")
     
 
-    items.forEach((i) => {
-      const spl = i.split(" ");
-      // console.log(spl);
-      if (spl[0] == "") {
-        ingred.quantities.push(spl[1]);
-        ingred.ingredients.push(spl[2]);
-      } else {
-        ingred.quantities.push(spl[0]);
-        ingred.ingredients.push(spl[1]);
-      }
-      // console.log(ingred);
-    });
+    // items.forEach((i) => {
+    //   const spl = i.split(" ");
+    //   // console.log(spl);
+    //   if (spl[0] == "") {
+    //     ingred.quantities.push(spl[1]);
+    //     ingred.ingredients.push(spl[2]);
+    //   } else {
+    //     ingred.quantities.push(spl[0]);
+    //     ingred.ingredients.push(spl[1]);
+    //   }
+    //   // console.log(ingred);
+    // });
 
     await updateRecipe({
       variables: {
@@ -81,7 +81,7 @@ const Edit = (props) => {
         description: recipe.description,
         instructions: recipe.instructions,
         image: recipe.image,
-        ingredients: ingred.ingredients,
+        ingredients: items,
         quantities: ingred.quantities,
       },
       refetchQueries: [{ query: GET_RECIPES }],

@@ -48,11 +48,11 @@ const Show = ({ getQuery }) => {
 
           {recipe.quantities ? (
             <div className="doubleList">
-              <ul className="quantities">
+              {/* <ul className="quantities">
                 {recipe.quantities.map((x) => {
                   return <li>{x}</li>;
                 })}
-              </ul>
+              </ul> */}
               <ul className="ingredients">
                 {recipe.ingredients.map((x) => {
                   return <li>{x}</li>;

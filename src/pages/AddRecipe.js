@@ -27,19 +27,20 @@ const AddRecipe = (props) => {
     }
     
     const items = recipe.ingredients.split(",")
-
-    items.forEach((i) => {
-      const spl = i.split(" ")
-      console.log(spl)
-      if (spl[0] == "") {
-        ingred.quantities.push(spl[1]);
-        ingred.ingredients.push(spl[2]);
-      } else {
-        ingred.quantities.push(spl[0])
-        ingred.ingredients.push(spl[1])
-      }
-      console.log(ingred)
-    })
+    console.log(items)
+    // items.forEach((i) => {
+    //   console.log(items)
+    //   const spl = i.split(" ")
+    //   console.log(spl)
+    //   if (spl[0] == "") {
+    //     ingred.quantities.push(spl[1]);
+    //     ingred.ingredients.push(spl[2]);
+    //   } else {
+    //     ingred.quantities.push(spl[0])
+    //     ingred.ingredients.push(spl[1])
+    //   }
+    //   console.log(ingred)
+    // })
     
     await addRecipe({
       variables: {
@@ -47,7 +48,7 @@ const AddRecipe = (props) => {
         description: recipe.description,
         instructions: recipe.instructions,
         image: recipe.image,
-        ingredients: ingred.ingredients,
+        ingredients: items,
         quantities: ingred.quantities,
       }, refetchQueries:[{query:GET_RECIPES}]
     })
