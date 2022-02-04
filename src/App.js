@@ -11,6 +11,7 @@ import Edit from './pages/Edit';
 import Random from './pages/Random';
 import Search from './pages/Search';
 import SearchResults from './pages/SearchResults';
+import SearchShow from './pages/SearchShow';
 
 function App() {
   //////////////////////
@@ -44,7 +45,8 @@ function App() {
         <Route path="/:id/edit" element={<Edit allRecipes={allRecipes?.data?.getRecipes} />} />
         <Route path="/random" element={<Random url={url} apiKey={apiKey} />} />
         <Route path="/search" element={<Search url={url} apiKey={apiKey} setSearchURL={setSearchURL} />} />
-        <Route path="/search/results" element={<SearchResults searchURL={searchURL}/>}/>
+        <Route path="/search/results" element={<SearchResults searchURL={searchURL} />} />
+        <Route path="/search/show" element={<SearchShow/> }/>
         </Routes>
       
     </div>
