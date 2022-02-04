@@ -9,6 +9,7 @@ import Show from './pages/Show';
 import Header from './components/Header';
 import Edit from './pages/Edit';
 import Random from './pages/Random';
+import Search from './pages/Search';
 
 function App() {
   //////////////////////
@@ -39,7 +40,8 @@ function App() {
         <Route path="/new" element={<AddRecipe />} />
         <Route path="/:id" element={<Show />} />
         <Route path="/:id/edit" element={<Edit allRecipes={allRecipes?.data?.getRecipes} />} />
-        <Route path="/random" element ={<Random url={url} apiKey={apiKey}/>}/>
+        <Route path="/random" element={<Random url={url} apiKey={apiKey} />} />
+        <Route path="/search" element={<Search url={url} apiKey={apiKey}/> }/>
         </Routes>
       
     </div>
