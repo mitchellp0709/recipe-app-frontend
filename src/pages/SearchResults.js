@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 const SearchResults = (props) => {
-const navigate=useNavigate()
   const [recipes, setRecipes]=useState([])
 
   const getRecipes = async () => {
     const response = await fetch(props.searchURL)
     const data = await response.json()
     setRecipes(data)
+    console.log(props.searchURL)
   }
+    const setSearchResult = props.setSearchResult;
 
   useEffect(() => { getRecipes()},[])
 
@@ -40,7 +41,7 @@ const navigate=useNavigate()
                 );
               })}
             </ul>
-            <button onClick={()=>{navigate("/search/show")}}>View Full Recipe</button>
+            <Link to="/search/show"><button onClick={()=>props.setSearchResult(res.id)}>Real Click Here</button></Link>
           </div>
         );
       })}

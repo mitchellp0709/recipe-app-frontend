@@ -30,7 +30,8 @@ function App() {
   const url = "https://api.spoonacular.com/recipes/";
   const apiKey = "58b7f91d4b5e4caa8919e0f7bd122b71";
 
-  const [searchURL, setSearchURL]=useState(null)
+  const [searchURL, setSearchURL] = useState(null)
+  const [searchResult, setSearchResult]=useState(null)
 
 
  
@@ -45,8 +46,8 @@ function App() {
         <Route path="/:id/edit" element={<Edit allRecipes={allRecipes?.data?.getRecipes} />} />
         <Route path="/random" element={<Random url={url} apiKey={apiKey} />} />
         <Route path="/search" element={<Search url={url} apiKey={apiKey} setSearchURL={setSearchURL} />} />
-        <Route path="/search/results" element={<SearchResults searchURL={searchURL} />} />
-        <Route path="/search/show" element={<SearchShow/> }/>
+        <Route path="/search/results" element={<SearchResults searchURL={searchURL} setSearchResult={setSearchResult}/>} />
+        <Route path="/search/show" element={<SearchShow searchResult={searchResult} url={url} apiKey={apiKey}/> }/>
         </Routes>
       
     </div>

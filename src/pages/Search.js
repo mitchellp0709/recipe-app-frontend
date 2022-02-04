@@ -16,11 +16,7 @@ const Search = ({url,apiKey,setSearchURL}) => {
   })
 
 
-  // const [ing1, setIng1] = useState();
-  // const [ing2, setIng2] = useState();
-  // const [ing3, setIng3] = useState();
-  // const [ing4, setIng4] = useState();
-  // const [ing5, setIng5] = useState();
+
   
   const handleChange = (event) => {
     setIngredients({ ...ingredients, [event.target.name]: event.target.value });
