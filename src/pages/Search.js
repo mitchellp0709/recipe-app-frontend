@@ -1,7 +1,8 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
-const Search = ({url,apiKey}) => {
-
+const Search = ({url,apiKey,setSearchURL}) => {
+  const navigate=useNavigate()
   let fullUrl = [`${url}findByIngredients?ingredients=`]
   const fullApiKey = `&apiKey=${apiKey}`
   
@@ -13,6 +14,7 @@ const Search = ({url,apiKey}) => {
     ing5: "",
     num:null
   })
+
 
   // const [ing1, setIng1] = useState();
   // const [ing2, setIng2] = useState();
@@ -35,7 +37,11 @@ const Search = ({url,apiKey}) => {
     fullUrl.push(`&number=${ingredients.num}`);
     fullUrl.push(fullApiKey);
     const final = fullUrl.join("");
-    console.log(final);
+    setSearchURL(final)
+    if (ingredients.num < 1) {
+      alert("Number of ingredients is required and can't be negative!")
+      navigate("/search")
+    } else{navigate("/search/results");}
   }
 
   return (

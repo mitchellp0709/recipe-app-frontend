@@ -10,6 +10,7 @@ import Header from './components/Header';
 import Edit from './pages/Edit';
 import Random from './pages/Random';
 import Search from './pages/Search';
+import SearchResults from './pages/SearchResults';
 
 function App() {
   //////////////////////
@@ -28,6 +29,7 @@ function App() {
   const url = "https://api.spoonacular.com/recipes/";
   const apiKey = "58b7f91d4b5e4caa8919e0f7bd122b71";
 
+  const [searchURL, setSearchURL]=useState(null)
 
 
  
@@ -41,7 +43,8 @@ function App() {
         <Route path="/:id" element={<Show />} />
         <Route path="/:id/edit" element={<Edit allRecipes={allRecipes?.data?.getRecipes} />} />
         <Route path="/random" element={<Random url={url} apiKey={apiKey} />} />
-        <Route path="/search" element={<Search url={url} apiKey={apiKey}/> }/>
+        <Route path="/search" element={<Search url={url} apiKey={apiKey} setSearchURL={setSearchURL} />} />
+        <Route path="/search/results" element={<SearchResults searchURL={searchURL}/>}/>
         </Routes>
       
     </div>
