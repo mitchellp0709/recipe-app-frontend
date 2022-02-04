@@ -57,8 +57,18 @@ const Edit = (props) => {
       quantities: [],
     };
     console.log(recipe.ingredients)
-
-    const items = recipe.ingredients.split(",")
+    let items = null
+    
+    // if (recipe.ingredients.length > 0) {
+    //   items = recipe.ingredients
+    // } else { items = recipe.ingredients.split(",")}
+    //const items = recipe.ingredients.split(",")
+    
+    if (target2.ingredients === recipe.ingredients) {
+      items = recipe.ingredients
+    } else {
+      items = recipe.ingredients.split(",");
+    }
     
 
     // items.forEach((i) => {
