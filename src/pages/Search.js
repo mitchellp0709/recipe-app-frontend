@@ -10,8 +10,10 @@ const Search = ({url,apiKey}) => {
     ing2:"",
     ing3:"",
     ing4:"",
-    ing5:""
+    ing5: "",
+    num:null
   })
+
   // const [ing1, setIng1] = useState();
   // const [ing2, setIng2] = useState();
   // const [ing3, setIng3] = useState();
@@ -30,7 +32,7 @@ const Search = ({url,apiKey}) => {
         fullUrl.push(ingredients[x])
       }
     }
-    fullUrl.push("&number=5");
+    fullUrl.push(`&number=${ingredients.num}`);
     fullUrl.push(fullApiKey);
     const final = fullUrl.join("");
     console.log(final);
@@ -75,9 +77,13 @@ const Search = ({url,apiKey}) => {
           onChange={handleChange}
         />
         <input
-          type="submit"
-          value="Search for Recipes"
+          type="number"
+          name="num"
+          value={ingredients.num}
+          placeholder="Number of Recipes"
+          onChange={handleChange}
         />
+        <input type="submit" value="Search for Recipes" />
       </form>
     </div>
   );
