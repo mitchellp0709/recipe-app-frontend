@@ -2,7 +2,8 @@ import { useNavigate, useParams } from "react-router-dom"
 import { useState, useEffect } from "react";
 import { UPDATE_RECIPE } from "../graphql/Mutations";
 import { useQuery, useMutation } from "@apollo/client";
-import { GET_RECIPES } from "../graphql/Queries";
+import { GET_RECIPES, GET_RECIPE } from "../graphql/Queries";
+
 
 
 const Edit = (props) => {
@@ -86,7 +87,7 @@ const Edit = (props) => {
 
     await updateRecipe({
       variables: {
-        id:id,
+        id: id,
         name: recipe.name,
         description: recipe.description,
         instructions: recipe.instructions,
@@ -94,7 +95,8 @@ const Edit = (props) => {
         ingredients: items,
         quantities: ingred.quantities,
       },
-      refetchQueries: [{ query: GET_RECIPES }],
+      refetchQueries: [{ query: GET_RECIPES, GET_RECIPE }],
+      
     });
     navigate("/");
   };

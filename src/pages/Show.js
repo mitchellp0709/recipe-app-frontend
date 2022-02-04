@@ -32,6 +32,7 @@ const Show = ({ getQuery }) => {
   const { loading, error, data } = useQuery(GET_RECIPE, {
     variables: { id: id },
     onCompleted: (data) => setRecipe(data.getRecipe),
+    // refetchQueries:[{query:GET_RECIPE}]
   });
   // const { loading, error, data }=getQuery(id)
 
