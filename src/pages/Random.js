@@ -39,8 +39,8 @@ const Random = (props) => {
     await addRecipe({
       variables: {
         name: randomRecipe.recipes[0].title,
-        description: randomRecipe.recipes[0].summary,
-        instructions: randomRecipe.recipes[0].instructions,
+        description: randomRecipe.recipes[0].summary.replace(/<[^>]+>/g, ""),
+        instructions: randomRecipe.recipes[0].instructions.replace(/<[^>]+>/g, ""),
         image: randomRecipe.recipes[0].image,
         ingredients: ingredients,
       },
@@ -53,7 +53,6 @@ const Random = (props) => {
 
 
   if (randomRecipe) {
-    console.log(randomRecipe)
     const fixedInstructions = randomRecipe.recipes[0].instructions.replace(/<[^>]+>/g, "");
     const fixedDescription = randomRecipe.recipes[0].summary.replace(/<[^>]+>/g, "")
     return (

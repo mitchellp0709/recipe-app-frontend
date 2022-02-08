@@ -41,7 +41,7 @@ const SearchResults = (props) => {
                 );
               })}
             </ul>
-            <Link to="/search/show"><button onClick={()=>props.setSearchResult(res.id)}>Real Click Here</button></Link>
+            <Link to="/search/show"><button onClick={()=>props.setSearchResult(res.id)}>Click Here for Full Recipe</button></Link>
           </div>
         );
       })}

@@ -31,7 +31,7 @@ function App() {
   const apiKey = "58b7f91d4b5e4caa8919e0f7bd122b71";
 
   const [searchURL, setSearchURL] = useState(null)
-  const [searchResult, setSearchResult]=useState(null)
+  const [searchResult, setSearchResult]=useState("")
 
 
  

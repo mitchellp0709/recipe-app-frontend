@@ -5,7 +5,7 @@ const Main = (props) => {
 
   // const { loading, error, data } = useQuery(GET_RECIPES);
   const { loading, error, data } = props.allRecipes
-  if (loading) return <h1>loading...</h1>;
+  if (loading) return <h1>Loading...</h1>;
   if (error) return <p>error.message</p>;
 
 

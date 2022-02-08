@@ -6,13 +6,13 @@ import { useNavigate } from "react-router-dom";
 
 const SearchShow = ({apiKey,url,searchResult}) => {
   const navigate=useNavigate()
-  const [recipe, setRecipe] = useState({})
+  const [recipe, setRecipe] = useState(null)
 
   const getRecipe = async () => {
+    console.log("search Show")
+    console.log(`${url}${searchResult}/information?apiKey=${apiKey}`);
     const result = await fetch(`${url}${searchResult}/information?apiKey=${apiKey}`)
     const data = await result.json()
-    console.log(`${url}${searchResult}/information?apiKey=${apiKey}`)
-    console.log(data)
     setRecipe(data)
   }
 
@@ -34,12 +34,11 @@ const SearchShow = ({apiKey,url,searchResult}) => {
         ingredients.push(temp.join(" "));
         temp = [];
       }
-
       await addRecipe({
         variables: {
           name: recipe.title,
-          description: recipe.summary,
-          instructions: recipe.instructions,
+          description: recipe.summary.replace(/<[^>]+>/g, ""),
+          instructions: recipe.instructions.replace(/<[^>]+>/g, ""),
           image: recipe.image,
           ingredients: ingredients,
         },
@@ -51,14 +50,17 @@ const SearchShow = ({apiKey,url,searchResult}) => {
   useEffect(() => { getRecipe()},[])
 
   if (recipe) {
+    const fixedInstructions = recipe.instructions.replace(/<[^>]+>/g, "")
+    const fixedDescription = recipe.summary.replace(/<[^>]+>/g, "")
+    // const fixedInstructions = recipe.instructions
+    // const fixedDescription = recipe.summary
     return (
+      
       <div className="random-container">
         <h1>{recipe.title}</h1>
-        <img
-          src={recipe.image}
-          alt={recipe.title}
-        />
-        <p>{recipe.summary}</p>
+        {console.log(recipe)}
+        <img src={recipe.image} alt={recipe.title} />
+        <p>{fixedDescription}</p>
         <h2>Ingredients: </h2>
         <ul>
           {recipe.extendedIngredients.map((ing) => {
@@ -70,9 +72,7 @@ const SearchShow = ({apiKey,url,searchResult}) => {
           })}
         </ul>
         <h2>Instructions: </h2>
-        <p className="random-instructions">
-          {recipe.instructions}
-        </p>
+        <p className="random-instructions">{fixedInstructions}</p>
         <button onClick={handleSubmit}>Like it? Favorite it!</button>
       </div>
     );
