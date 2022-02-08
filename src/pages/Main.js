@@ -20,7 +20,7 @@ const Main = (props) => {
                 <h1>{recipe.name}</h1>
               </Link>
               <Link to={`/${recipe.id}`}>
-                <img src={recipe.image} />
+                <img src={recipe.image} alt={recipe.name}/>
               </Link>
               <h2>{ recipe.description}</h2>
             </div>

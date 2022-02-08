@@ -55,25 +55,28 @@ const SearchShow = ({apiKey,url,searchResult}) => {
     // const fixedInstructions = recipe.instructions
     // const fixedDescription = recipe.summary
     return (
-      
-      <div className="random-container">
-        <h1>{recipe.title}</h1>
-        {console.log(recipe)}
-        <img src={recipe.image} alt={recipe.title} />
-        <p>{fixedDescription}</p>
-        <h2>Ingredients: </h2>
-        <ul>
-          {recipe.extendedIngredients.map((ing) => {
-            return (
-              <li>
-                {ing.amount} {ing.unit} {ing.name}
-              </li>
-            );
-          })}
-        </ul>
-        <h2>Instructions: </h2>
-        <p className="random-instructions">{fixedInstructions}</p>
-        <button onClick={handleSubmit}>Like it? Favorite it!</button>
+      <div className="bs">
+        <div className="show-container">
+          <h1 className="recipe-name">{recipe.title}</h1>
+          {console.log(recipe)}
+          <img src={recipe.image} alt={recipe.title} className="show-image" />
+          <p>{fixedDescription}</p>
+          <h2>Ingredients: </h2>
+          <div className="doubleList">
+          <ul className="ingredients">
+            {recipe.extendedIngredients.map((ing) => {
+              return (
+                <li>
+                  {ing.amount} {ing.unit} {ing.name}
+                </li>
+              );
+            })}
+          </ul>
+          </div>
+          <h2>Instructions: </h2>
+          <p className="random-instructions">{fixedInstructions}</p>
+          <button onClick={handleSubmit}>Like it? Favorite it!</button>
+        </div>
       </div>
     );
   } else {
