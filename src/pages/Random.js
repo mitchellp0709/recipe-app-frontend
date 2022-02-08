@@ -56,28 +56,31 @@ const Random = (props) => {
     const fixedInstructions = randomRecipe.recipes[0].instructions.replace(/<[^>]+>/g, "");
     const fixedDescription = randomRecipe.recipes[0].summary.replace(/<[^>]+>/g, "")
     return (
-      <div className="random-container">
-        <h1>{randomRecipe.recipes[0].title}</h1>
-        <img
-          src={randomRecipe.recipes[0].image}
-          alt={randomRecipe.recipes[0].title}
-        />
-        <p>{fixedDescription}</p>
-        <h2>Ingredients: </h2>
-        <ul>
-          {randomRecipe.recipes[0].extendedIngredients.map((ing) => {
-            return (
-              <li>
-                {ing.amount} {ing.unit} {ing.name}
-              </li>
-            );
-          })}
-        </ul>
-        <h2>Instructions: </h2>
-        <p className="random-instructions">
-          {fixedInstructions}
-        </p>
-        <button onClick={handleSubmit}>Like it? Favorite it!</button>
+      <div className="bs">
+        <div className="show-container">
+          <h1 className="recipe-name">{randomRecipe.recipes[0].title}</h1>
+          <img
+            src={randomRecipe.recipes[0].image}
+            alt={randomRecipe.recipes[0].title}
+            className="show-image"
+          />
+          <p>{fixedDescription}</p>
+          <h2>Ingredients: </h2>
+          <div className="doubleList">
+            <ul className="ingredients">
+              {randomRecipe.recipes[0].extendedIngredients.map((ing) => {
+                return (
+                  <li>
+                    {ing.amount} {ing.unit} {ing.name}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          <h2>Instructions: </h2>
+          <p className="random-instructions">{fixedInstructions}</p>
+          <button onClick={handleSubmit}>Like it? Favorite it!</button>
+        </div>
       </div>
     );
   } else{return <h1>Loading...</h1>}
